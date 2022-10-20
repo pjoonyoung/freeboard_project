@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.joonyoung.freeboard.command.BCommand;
 import com.joonyoung.freeboard.command.BContentCommand;
+import com.joonyoung.freeboard.command.BDeleteCommand;
 import com.joonyoung.freeboard.command.BWriteCommand;
 import com.joonyoung.freeboard.command.BListCommand;
 import com.joonyoung.freeboard.command.BModifyCommand;
@@ -101,6 +102,14 @@ public class BFrontController extends HttpServlet {
 			System.out.println("modify.do 요청!");
 			
 			command= new BModifyCommand();
+			command.execute(request, response);
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/list.do");
+			dispatcher.forward(request, response);
+		} else if(comm.equals("/delete.do")) {
+			System.out.println("delete.do 요청!");
+			
+			command= new BDeleteCommand();
 			command.execute(request, response);
 			
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/list.do");
